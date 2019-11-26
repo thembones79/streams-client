@@ -23,11 +23,12 @@ export const signOut = () => {
 };
 
 export const createStream = formValues => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
     const request = {
       endpoint: "/streams",
       method: "post",
-      body: formValues
+      body: {...formValues, userId}
     };
 
     const response = await streams(request);
@@ -39,8 +40,7 @@ export const createStream = formValues => {
 export const fetchStreams = () => async dispatch => {
   const request = {
     endpoint: "/streams",
-    method: "get",
-    body: {}
+    method: "get"
   };
   const response = await streams(request);
   console.log({ response });
