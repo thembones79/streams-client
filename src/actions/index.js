@@ -29,7 +29,7 @@ export const createStream = formValues => {
     const request = {
       endpoint: "/streams",
       method: "post",
-      body: {...formValues, userId}
+      body: { ...formValues, userId }
     };
 
     const response = await streams(request);
@@ -37,8 +37,7 @@ export const createStream = formValues => {
     dispatch({ type: CREATE_STREAM, payload: response });
     //  Do some programmatic navigation to
     // get the user back to the root route
-    history.push("/")
-
+    history.push("/");
   };
 };
 
@@ -54,9 +53,8 @@ export const fetchStreams = () => async dispatch => {
 
 export const fetchStream = id => async dispatch => {
   const request = {
-    endpoint: `/streams/:${id}`,
-    method: "get",
-    body: {}
+    endpoint: `/streams/${id}`,
+    method: "get"
   };
   const response = await streams(request);
   console.log({ response });
